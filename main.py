@@ -3,6 +3,7 @@ import requests
 import sys
 from datetime import timedelta
 import MyAPI
+import reply
 
 class Listener(tweepy.StreamListener):
     def on_status(self, status):
@@ -10,7 +11,7 @@ class Listener(tweepy.StreamListener):
         print('------------------------------')
         print(status.text)
         print("{name}({screen}) {created} via {src}\n".format(name=status.author.name, screen=status.author.screen_name,created=status.created_at, src=status.source))
-        function.job(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
+        reply.reply(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
         return True
 
     def on_error(self, status_code):
