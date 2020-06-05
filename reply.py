@@ -3,6 +3,7 @@ import requests
 import sys
 import random
 import MyAPI
+import traceback
 
 auth = tweepy.OAuthHandler(MyAPI.consumer_key_send, MyAPI.consumer_secret_send)
 auth.set_access_token(MyAPI.access_token_send, MyAPI.access_secret_send)
@@ -32,3 +33,17 @@ def reply(tw_text, tw_user_name, tw_id, tw_author_screen_name, tw_retweeted):
     file.close()
     selected_song = random.choice(song_list)
     selected_song = selected_song.rstrip()
+    media = "data/song_media/" + selected_song + ".png"
+    #条件を生成
+
+    try:
+        api.create_favorite(tw_id)
+    except:
+        pass
+    tweet_url = "https://twitter.com/" + tw_author_screen_name + "/status/" + str(tw_id)
+    
+    try:
+        api.update_with_media(filename=media, status=tweet_buf)
+    except:
+        traceback.print_exc()
+    
