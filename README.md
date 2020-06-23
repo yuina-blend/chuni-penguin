@@ -13,7 +13,7 @@ ID : [@chuni_penguin](https://twitter.com/chuni_penguin)
 
 <img src="image/2020-06-24-00-57-53.png" height=100>
 
-<img src="image/2020-06-24-00-58-27.png" height=200>
+<img src="image/2020-06-24-00-58-27.png" height=300>
 
 ## 注意点
 
