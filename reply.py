@@ -9,15 +9,16 @@ auth = tweepy.OAuthHandler(MyAPI.consumer_key_send, MyAPI.consumer_secret_send)
 auth.set_access_token(MyAPI.access_token_send, MyAPI.access_secret_send)
 api = tweepy.API(auth)
 
-def serch_level(text):
-    for i in range(100, 142):
-        if (str(i / 10) in text) and (str(i / 10)[-1] != "0"):
+
+def serch_level(text, LV_start, LV_end):
+    for i in range(int(LV_start * 10), int(LV_end * 10)):
+        if (str(i / 10) in text):
             return str(i / 10)
         elif str(i / 10) in text:
             return str(int(i / 10))
-    for i in range(10, 14):
+    for i in range(int(LV_start), int(LV_end)):
         if (str(i) + "+" in text) or (str(i) + "＋" in text):
-            return str(i)
+            return (str(i) + "+")
         elif str(i) in text:
             return str(i)
     return "ALL"
@@ -27,7 +28,7 @@ def serch_level(text):
 #     ジャンルの指定をつくる
 
 def reply(tw_text, tw_user_name, tw_id, tw_author_screen_name, tw_retweeted):
-    level = serch_level(tw_text)
+    level = serch_level(tw_text, 12.4, 14.1)
     file = open("Lv" + level + ".txt")
     song_list = file.readlines()
     file.close()
