@@ -12,7 +12,8 @@ class Listener(tweepy.StreamListener):
         print('------------------------------')
         print(status.text)
         print("{name}({screen}) {created} via {src}\n".format(name=status.author.name, screen=status.author.screen_name,created=status.created_at, src=status.source))
-        reply.reply(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
+        if ("RT @" not in status.text) and (not "https:" in status.text):
+            reply.reply(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
         return True
 
     def on_error(self, status_code):
