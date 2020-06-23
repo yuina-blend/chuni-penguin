@@ -40,12 +40,12 @@ def generating_challenge():
 
 def reply(tw_text, tw_user_name, tw_id, tw_author_screen_name, tw_retweeted):
     level = serch_level(tw_text, 12.4, 14.1)
-    file = open("Lv" + level + ".txt")
+    file = open("data/" + "Lv" + level + ".txt")
     song_list = file.readlines()
     file.close()
     selected_song = random.choice(song_list)
     selected_song = selected_song.rstrip()
-    media = "data/song_media/" + selected_song + ".png"
+    media = "data/song_medias/" + selected_song + ".png"
     #条件を生成
     challenge_request = generating_challenge()
     try:
