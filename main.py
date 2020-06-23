@@ -4,6 +4,7 @@ import sys
 from datetime import timedelta
 import MyAPI
 import reply
+import traceback
 
 class Listener(tweepy.StreamListener):
     def on_status(self, status):
@@ -35,4 +36,4 @@ while True:
         print("\nkeyboardInterrupt\n")
         sys.exit()
     except:
-        print('error! fuck!')
+        traceback.print_exc()
