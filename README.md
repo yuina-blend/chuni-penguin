@@ -11,9 +11,9 @@ ID : [@chuni_penguin](https://twitter.com/chuni_penguin)
 
 **#お願いチュウニペンギン**と**楽曲レベル**（現状で指定できるのはこれだけ）を含めてツイートすると**引用RT**で課題が返ってきます。
 
-![](image/2020-06-24-00-57-53.png)
+<img src="image/2020-06-24-00-57-53.png" height=100>
 
-![](image/2020-06-24-00-58-27.png)
+<img src="image/2020-06-24-00-58-27.png" height=200>
 
 ## 注意点
 
