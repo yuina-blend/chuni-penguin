@@ -11,12 +11,12 @@ api = tweepy.API(auth)
 
 
 def serch_level(text, LV_start, LV_end):
-    for i in range(int(LV_start * 10), int(LV_end * 10)):
+    for i in range(int(LV_start * 10), int(LV_end * 10) + 1):
         if (str(i / 10) in text):
             return str(i / 10)
         elif str(i / 10) in text:
             return str(int(i / 10))
-    for i in range(int(LV_start), int(LV_end)):
+    for i in range(int(LV_start), int(LV_end) + 1):
         if (str(i) + "+" in text) or (str(i) + "＋" in text):
             return (str(i) + "+")
         elif str(i) in text:
