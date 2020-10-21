@@ -39,7 +39,7 @@ def find_level(tweet):
 def choice_song(levels):
     choiced_songs = []
     for i in range(len(levels)):
-        path = "test_data\\" + level[i] + "\\"
+        path = "test_data/" + levels[i] + "/"
     # print(path)
         songs = []
         for song in pathlib.Path(path).glob("*.png"):
