@@ -3,3 +3,4 @@ _pycache_
 .vscode
 ?.py
 *.pyc
+git-proxy
