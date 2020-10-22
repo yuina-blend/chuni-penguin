@@ -18,7 +18,10 @@ def find_level(tweet):
     for level in re.findall("1[0-3]\+|1[0-4]\.[0-9]|1[0-4]", tweet):
         levels.append(level)
     if len(levels) == 0:
-        return ['random']
+        l = []
+        for i in range(100, 141):
+            l.append(i)
+        return [str(random.choice(l) / 10)]
     else:
         return levels
 
