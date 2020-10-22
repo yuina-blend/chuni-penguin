@@ -32,12 +32,12 @@ def choice_song(levels):
             r = [7, 8, 9]
             path += levels[i][:-1] + "." + str(random.choice(r)) + "/"
         elif '.' in levels[i]:
-            path += levels[i][:-2] + "/" + levels[0] + "/"
+            path += levels[i][:-2] + "/" + levels[i] + "/"
         else:
             path += levels[i] + "/"
             r = [0, 1, 2, 3, 4, 5, 6]
             path += levels[i] + "." + str(random.choice(r)) + "/"
-    # print(path)
+        # print(path)
         songs = []
         for song in pathlib.Path(path).glob("*.png"):
             songs.append({"file_path": song, "file_name": str(
