@@ -19,9 +19,24 @@ def find_level(tweet):
         levels.append(level)
     if len(levels) == 0:
         l = []
-        for i in range(100, 141):
-            l.append(i)
-        return [str(random.choice(l) / 10)]
+        for i in range(100, 142):
+            l.append(str(i / 10))
+        not_there = ['10.1', '10.2', '10.4', '10.9']
+        for i in range(142, 150):
+            not_there.append(str(i / 10))
+        is_konton = False
+        random_song = ['']
+        # print(not_there)
+        while True:
+            is_konton = False
+            random_song[0] = random.choice(l)
+            # print(random_song[0])
+            for konton in not_there:
+                if random_song[0] == konton:
+                    is_konton = True
+                    break
+            if not is_konton:
+                return random_song
     else:
         return levels
 
