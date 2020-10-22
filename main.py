@@ -3,7 +3,7 @@ import requests
 import sys
 from datetime import timedelta
 import MyAPI
-import reply
+import default
 import traceback
 
 class Listener(tweepy.StreamListener):
@@ -16,7 +16,7 @@ class Listener(tweepy.StreamListener):
             # if ("コースモード" in status.text):
             #     new_reply.reply(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
             # else:
-            reply.reply(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
+            default.reply(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
         return True
 
     def on_error(self, status_code):
