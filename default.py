@@ -13,35 +13,23 @@ api = tweepy.API(auth)
 
 
 def find_level(tweet):
+    unable_to_choice = ['10.1', '10.2', '10.4', '10.9', '14.2', '14.3', '14.4', '14.5', '14.6', '14.7', '14.8', '14.9']
     levels = []
     tweet = tweet.replace('＋', '+')
     for level in re.findall("1[0-3]\+|1[0-4]\.[0-9]|1[0-4]", tweet):
-        levels.append(level)
+        if level not in unable_to_choice:
+            levels.append(level)
     if len(levels) == 0:
-        l = []
-        for i in range(100, 142):
-            l.append(str(i / 10))
-        not_there = ['10.1', '10.2', '10.4', '10.9']
-        for i in range(142, 150):
-            not_there.append(str(i / 10))
-        is_konton = False
-        random_song = ['']
-        # print(not_there)
-        while True:
-            is_konton = False
-            random_song[0] = random.choice(l)
-            # print(random_song[0])
-            for konton in not_there:
-                if random_song[0] == konton:
-                    is_konton = True
-                    break
-            if not is_konton:
-                return random_song
-    else:
-        return levels
-
+        return ['random']
+    return levels
 
 def choice_song(levels):
+    choice_is_random = False
+    if levels[0] == 'random':
+        unable_to_choice = ['10.1', '10.2', '10.4', '10.9', '14.2', '14.3', '14.4', '14.5', '14.6', '14.7', '14.8', '14.9']
+        levels = levels.remove('random')
+        levels = [str(i / 10) for i in range(100, 142) if str(i / 10) not in unable_to_choice]
+        choice_is_random = True
     choiced_songs = []
     for i in range(len(levels)):
         path = "data/"
@@ -58,13 +46,20 @@ def choice_song(levels):
             path += levels[i] + "/"
             r = [0, 1, 2, 3, 4, 5, 6]
             path += levels[i] + "." + str(random.choice(r)) + "/"
-        print(path)
+        # print(path)
         songs = []
         for song in pathlib.Path(path).glob("*.png"):
             songs.append({"file_path": song, "file_name": str(
-                song)[:-4].replace(path, '')})
+                song)[:-4].replace(path, ''), "level_path": path})
         choiced_songs.append(random.choice(songs))
-    return choiced_songs
+    if not choice_is_random:
+        return choiced_songs
+    else:
+        all_songs = []
+        for path in choiced_songs:
+            for song in pathlib.Path(path["level_path"]).glob("*.png"):
+                all_songs.append({"file_path": song, "file_name": str(song)[:-4].replace(path["level_path"], ''), "level_path": path['level_path']})
+        return [random.choice(all_songs)]
 
 def generating_challenge():
     notes_decision = ("JUSTICE", "ATTACK", "MISS")
