@@ -31,7 +31,25 @@ def find_level(tweet):
     for level in re.findall("1[0-3]\+|1[0-4]\.[0-9]|1[0-4]", tweet):
         levels.append(level)
     if len(levels) == 0:
-        return ['random']
+        l = []
+        for i in range(100, 142):
+            l.append(str(i / 10))
+        not_there = ['10.1', '10.2', '10.4', '10.9']
+        for i in range(142, 150):
+            not_there.append(str(i / 10))
+        is_konton = False
+        random_song = ['']
+        # print(not_there)
+        while True:
+            is_konton = False
+            random_song[0] = random.choice(l)
+            # print(random_song[0])
+            for konton in not_there:
+                if random_song[0] == konton:
+                    is_konton = True
+                    break
+            if not is_konton:
+                return random_song
     else:
         return levels
 
@@ -39,8 +57,21 @@ def find_level(tweet):
 def choice_song(levels):
     choiced_songs = []
     for i in range(len(levels)):
-        path = "test_data/" + levels[i] + "/"
-    # print(path)
+        path = "data/"
+        if "+" in levels[i]:
+            path += levels[i] + "/"
+            r = [7, 8, 9]
+            path += levels[i][:-1] + "." + str(random.choice(r)) + "/"
+        elif '.' in levels[i]:
+            if int(levels[i][-1]) >= 7:
+                path += levels[i][:-2] + "+/" + levels[i] + "/"
+            else:
+                path += levels[i][:-2] + "/" + levels[i] + "/"
+        else:
+            path += levels[i] + "/"
+            r = [0, 1, 2, 3, 4, 5, 6]
+            path += levels[i] + "." + str(random.choice(r)) + "/"
+        print(path)
         songs = []
         for song in pathlib.Path(path).glob("*.png"):
             songs.append({"file_path": song, "file_name": str(
