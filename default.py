@@ -16,7 +16,7 @@ def find_level(tweet):
     unable_to_choice = ['10.1', '10.2', '10.4', '10.9', '14.2', '14.3', '14.4', '14.5', '14.6', '14.7', '14.8', '14.9']
     levels = []
     tweet = tweet.replace('＋', '+')
-    for level in re.findall("1[0-3]\+|1[0-4]\.[0-9]|1[0-4]", tweet):
+    for level in re.findall("1[0-4]\+|1[0-4]\.[0-9]|1[0-4]", tweet):
         if level not in unable_to_choice:
             levels.append(level)
     if len(levels) == 0:
@@ -24,9 +24,21 @@ def find_level(tweet):
     return levels
 
 def choice_song(levels):
+    unable_to_choice = ['10.1', '10.2', '10.4', '10.9', '14.2', '14.3', '14.4', '14.5', '14.6', '14.7', '14.8', '14.9']
+    for i in range(len(levels)):
+        if levels[i] == '10':
+            level_a = ['10.0', '10.3', '10.5', '10.6']
+            levels[i] = random.choice(level_a)
+        elif levels[i] == '10+':
+            level_b = ['10.7', '10.8']
+            levels[i] = random.choice(level_b)
+        elif levels[i] == '14':
+            level_c = ['14.0', '14.1']
+            levels[i] = random.choice(level_c)
+        elif levels[i] == '14+':
+            levels[i] = random.choice([str(i / 10) for i in range(100, 142) if str(i / 10) not in unable_to_choice])
     choice_is_random = False
     if levels[0] == 'random':
-        unable_to_choice = ['10.1', '10.2', '10.4', '10.9', '14.2', '14.3', '14.4', '14.5', '14.6', '14.7', '14.8', '14.9']
         levels = levels.remove('random')
         levels = [str(i / 10) for i in range(100, 142) if str(i / 10) not in unable_to_choice]
         choice_is_random = True
@@ -46,7 +58,7 @@ def choice_song(levels):
             path += levels[i] + "/"
             r = [0, 1, 2, 3, 4, 5, 6]
             path += levels[i] + "." + str(random.choice(r)) + "/"
-        # print(path)
+        print(path)
         songs = []
         for song in pathlib.Path(path).glob("*.png"):
             songs.append({"file_path": song, "file_name": str(
