@@ -17,7 +17,7 @@ class Listener(tweepy.StreamListener):
             if "コースモード" in status.text:
                 course_mode.reply(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
             else:
-                default.reply(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
+                default.tweet(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
         return True
 
     def on_error(self, status_code):

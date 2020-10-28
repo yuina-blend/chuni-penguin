@@ -88,19 +88,20 @@ def generating_challenge():
 #     genre_list = []
 #     ジャンルの指定をつくる
 
-def reply(tw_text, tw_user_name, tw_id, tw_author_screen_name, tw_retweeted):
+def tweet(tw_text, tw_user_name, tw_id, tw_author_screen_name, tw_retweeted):
     level = find_level(tw_text)
     choiced_song = choice_song(level)
     #条件を生成
     challenge_request = generating_challenge()
-    try:
-        api.create_favorite(tw_id)
-    except:
-        pass
-    tweet_url = "https://twitter.com/" + tw_author_screen_name + "/status/" + str(tw_id)
-    tweet_buf = "僕の選んだ課題曲は" + "「" + choiced_song[0]["file_name"] + "」" + "!!\n" + challenge_request[0] + " " + str(challenge_request[1]) + "以下を目指そう!!\n"+ tweet_url
-    try:
-        api.update_with_media(filename=str(choiced_song[0]["file_path"]), status=tweet_buf)
-    except:
-        traceback.print_exc()
+    print("デフォ")
+    # try:
+    #     api.create_favorite(tw_id)
+    # except:
+    #     pass
+    # tweet_url = "https://twitter.com/" + tw_author_screen_name + "/status/" + str(tw_id)
+    # tweet_buf = "僕の選んだ課題曲は" + "「" + choiced_song[0]["file_name"] + "」" + "!!\n" + challenge_request[0] + " " + str(challenge_request[1]) + "以下を目指そう!!\n"+ tweet_url
+    # try:
+    #     api.update_with_media(filename=str(choiced_song[0]["file_path"]), status=tweet_buf)
+    # except:
+    #     traceback.print_exc()
     

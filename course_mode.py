@@ -120,20 +120,20 @@ def reply(tw_text, tw_user_name, tw_id, tw_author_screen_name, tw_retweeted):
         update_files.append(str(song_info["file_path"]))
         send_tweet += "「" + song_info["file_name"] + "」"
     # send_tweet += "JUSTICE1以下で終了 "
-    # print(send_tweet)
-    media_ids = []
-    for filename in update_files:
-        res = api.media_upload(filename)
-        media_ids.append(res.media_id)
-    try:
-        api.create_favorite(tw_id)
-    except:
-        pass
-    tweet_url = "https://twitter.com/" + tw_author_screen_name + "/status/" + str(tw_id)
-    send_tweet += tweet_url
-    try:
-        api.update_status(status=send_tweet, media_ids=media_ids)
-    except:
-        traceback.print_exc()
+    print(send_tweet)
+    # media_ids = []
+    # for filename in update_files:
+    #     res = api.media_upload(filename)
+    #     media_ids.append(res.media_id)
+    # try:
+    #     api.create_favorite(tw_id)
+    # except:
+    #     pass
+    # tweet_url = "https://twitter.com/" + tw_author_screen_name + "/status/" + str(tw_id)
+    # send_tweet += tweet_url
+    # try:
+    #     api.update_status(status=send_tweet, media_ids=media_ids)
+    # except:
+    #     traceback.print_exc()
     
 # reply(tw_text="#お願いチュウニペンギン\n13+ 13+ 13", tw_author_screen_name="a", tw_id=1, tw_user_name="a", tw_retweeted=0)
