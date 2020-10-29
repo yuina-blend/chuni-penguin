@@ -4,6 +4,7 @@ import sys
 from datetime import timedelta
 import MyAPI
 import default
+import course_mode
 import traceback
 
 class Listener(tweepy.StreamListener):
@@ -13,10 +14,10 @@ class Listener(tweepy.StreamListener):
         print(status.text)
         print("{name}({screen}) {created} via {src}\n".format(name=status.author.name, screen=status.author.screen_name,created=status.created_at, src=status.source))
         if ("RT @" not in status.text) and (not "https:" in status.text):
-            # if ("コースモード" in status.text):
-            #     new_reply.reply(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
-            # else:
-            default.reply(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
+            if "コースモード" or "コース" in status.text:
+                course_mode.reply(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
+            else:
+                default.reply(status.text, status.user.name, status.id,status.author.screen_name, status.retweeted)
         return True
 
     def on_error(self, status_code):
