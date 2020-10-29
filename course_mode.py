@@ -120,7 +120,7 @@ def reply(tw_text, tw_user_name, tw_id, tw_author_screen_name, tw_retweeted):
         update_files.append(str(song_info["file_path"]))
         send_tweet += "「" + song_info["file_name"] + "」"
     # send_tweet += "JUSTICE1以下で終了 "
-    # print(send_tweet)
+    print(send_tweet)
     media_ids = []
     for filename in update_files:
         res = api.media_upload(filename)

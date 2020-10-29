@@ -88,11 +88,12 @@ def generating_challenge():
 #     genre_list = []
 #     ジャンルの指定をつくる
 
-def reply(tw_text, tw_user_name, tw_id, tw_author_screen_name, tw_retweeted):
+def tweet(tw_text, tw_user_name, tw_id, tw_author_screen_name, tw_retweeted):
     level = find_level(tw_text)
     choiced_song = choice_song(level)
     #条件を生成
     challenge_request = generating_challenge()
+    print("デフォ")
     try:
         api.create_favorite(tw_id)
     except:
