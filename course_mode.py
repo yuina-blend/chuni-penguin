@@ -26,7 +26,7 @@ api = tweepy.API(auth)
 #     return "ALL"
 
 def find_level(tweet):
-    unable_to_choice = ['10.1', '10.2', '10.4', '10.9', '14.2', '14.3', '14.4', '14.5', '14.6', '14.7', '14.8', '14.9']
+    unable_to_choice = ['10.1', '10.2', '10.4', '14.2', '14.3', '14.4', '14.5', '14.6', '14.7', '14.8', '14.9']
     levels = []
     tweet = tweet.replace('＋', '+')
     for level in re.findall("1[0-4]\+|1[0-4]\.[0-9]|1[0-4]", tweet):
@@ -38,13 +38,13 @@ def find_level(tweet):
 
 
 def choice_song(levels):
-    unable_to_choice = ['10.1', '10.2', '10.4', '10.9', '14.2', '14.3', '14.4', '14.5', '14.6', '14.7', '14.8', '14.9']
+    unable_to_choice = ['10.1', '10.2', '10.4', '14.2', '14.3', '14.4', '14.5', '14.6', '14.7', '14.8', '14.9']
     for i in range(len(levels)):
         if levels[i] == '10':
             level_a = ['10.0', '10.3', '10.5', '10.6']
             levels[i] = random.choice(level_a)
         elif levels[i] == '10+':
-            level_b = ['10.7', '10.8']
+            level_b = ['10.7', '10.8', '10.9']
             levels[i] = random.choice(level_b)
         elif levels[i] == '14':
             level_c = ['14.0', '14.1']
