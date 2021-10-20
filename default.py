@@ -39,6 +39,8 @@ def choice_song(levels):
         #     levels[i] = random.choice(level_c)
         # elif levels[i] == '14+':
         #     levels[i] = random.choice([str(i / 10) for i in range(100, 142) if str(i / 10) not in unable_to_choice])
+        elif levels[i] == '15+':
+            levels[i] = random.choice([str(i / 10) for i in range(100, 156) if str(i / 10) not in unable_to_choice])
     choice_is_random = False
     if levels[0] == 'random':
         levels = levels.remove('random')
